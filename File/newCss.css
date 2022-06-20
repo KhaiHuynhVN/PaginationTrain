@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+.container{
+  margin-top: 50px;
+}
+
+.box-main {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(120, 120, 120, 0.484);
+  width: 95%;
+  height: 300px;
+  box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+  position: relative;
+}
+
+.card-content.grid.wide{
+  display: flex;
+  flex-direction: column;
+  height: calc(90px + 30px + 60px + 15px);
+  background-color: rgb(160, 160, 160);
+  position: absolute;
+  top: 0;
+}
+
+.card{
+  position: relative;
+  background: #fff;
+  width: 100%;
+  border-radius: 10px;
+  padding: 5px 5px;
+  margin-top: 20px;
+  bottom: 10px;
+  display: flex;
+}
+.card div {
+  flex: 100%;
+  text-align: center;
+  font-size: 30px;
+}
+
+.pagination{
+  text-align: center;
+  user-select: none;
+  position: absolute; 
+  bottom: 0;
+}
+
+.pagination li{
+  display: inline-block;
+  margin: 5px;
+  box-shadow: 0 5px 25px rgb(1 1 1 / 10%);
+}
+
+.pagination li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  line-height: 45px;
+}
+
+.previous-page, .next-page{
+  background: #0AB1CE;
+  width: 80px;
+  border-radius: 45px;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.previous-page:hover{
+  transform: translateX(-5px);
+}
+
+.next-page:hover{
+  transform: translateX(5px);
+}
+
+.current-page, .dots{
+  background: #ccc;
+  width: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+.current-page:hover {
+  transform: translateY(-5px)
+}
+
+.active{
+  background: #0AB1CE;
+}
+
+.disable{
+  background: #ccc;
+}
+
+@media screen and (max-width: 739.99px) {
+  .box-main {
+    width: 100%;
+  }
+}
+
+@media (max-width: 740px) {
+  .card div {
+    font-size: 20px;
+  }
+
+  .pagination li a {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  .previous-page, .next-page{
+    width: 60px;
+  }
+
+  .current-page, .dots{
+    width: 25px;
+  }
+}
+      
+
+/* html */
+/* <div class="card">
+	<div class="card-image"><img src="2.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="3.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="4.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="5.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="6.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="7.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="8.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="9.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="10.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="1.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="2.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="3.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="4.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="5.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="6.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="7.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="8.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="9.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="10.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="1.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="2.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="3.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="4.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="5.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="6.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="7.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="8.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="9.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>
+<div class="card">
+	<div class="card-image"><img src="10.jpg" alt=""></div>
+	<div class="card-info">
+		<h3>Card 01</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+			dolore magna aliqua.</p>
+	</div>
+</div>  */

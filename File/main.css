@@ -1,0 +1,105 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body {
+	background: #F3F3F3;
+}
+
+html {
+	height: 3000px;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+	background-color: #EEE;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+main.grid.wide {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 400px;
+	position: relative;
+	z-index: 999;
+	background-color: #826a6a79;
+}
+/* main.grid.wide::before {
+	content: '';
+	position: absolute;
+	width: 70%;
+	height: 100%;
+	background-color: #826a6a79;
+	z-index: 0;
+} */
+
+main .row {
+	width: 100%;
+	max-width: 95%;
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	margin-top: 25px;
+	z-index: 999;
+}
+
+main .list .item {
+	width: 100%;
+	padding: 15px;
+	border-bottom: 1px solid #CCC;
+	display: flex;
+}
+main .list .item:last-of-type {
+	border-bottom: none;
+}
+main .list .item:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+main .list .item .data {
+	flex: 1;
+	text-align: center;
+}
+
+.pagenumbers {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+}
+
+.pagenumbers button {
+	width: 50px;
+	height: 50px;
+
+	appearance: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+
+	background-color: #44AAEE;
+
+	margin: 5px;
+	transition: 0.4s;
+
+	color: #FFF;
+	font-size: 18px;
+	text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pagenumbers button:hover {
+	background-color: #44EEAA;
+}
+
+.pagenumbers button.active {
+	background-color: #44EEAA;
+	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+}

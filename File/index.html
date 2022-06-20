@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Users</title>
+
+	<link rel="stylesheet" href="./main.css" />
+	<link rel="stylesheet" href="./newCss.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="./gridd.css">
+</head>
+<body>
+	<header>
+		<h1>Users</h1>
+	</header>
+
+	<main class="grid wide">
+		<div class="row">
+			<div class="col l-12 m-12 c-12">
+				<div class="list" id="list"></div>
+			</div>
+		</div>
+		<div class="pagenumbers" id="pagination">
+			<ul>
+				
+			</ul>
+		</div>
+	</main>
+
+	<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+	<div class="container">
+		<div class="box-main">
+			<div class="card-content grid wide" style="max-width: 800px;">
+		
+			</div>
+			<div class="pagination">
+				
+			</div>
+		</div>
+	</div>
+	  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+	  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+	  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+	<script type="text/javascript">
+		function start() {
+			function getPageList(totalPages, page, maxLength) {
+				function range(start, end) {
+					return Array.from(Array(end - start + 1), (_, i) => i + start);
+				}
+
+				var sideWidth = maxLength < 9 ? 1 : 2;
+				var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+				var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+				if (totalPages <= maxLength) {
+					return range(1, totalPages);
+				}
+
+				if (page <= maxLength - sideWidth - 1 - rightWidth) {
+					return range(1, maxLength - sideWidth - 1).concat(0, range(totalPages - sideWidth + 1, totalPages));
+				}
+
+				if (page >= totalPages - sideWidth - 1 - rightWidth) {
+					return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+				}
+
+				return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+			}
+
+			$(function () {
+				var numberOfItems = $(".card-content .card").length;
+				var limitPerPage = 3; //How many card items visible per a page
+				var totalPages = Math.ceil(numberOfItems / limitPerPage);
+				var paginationSize = 7; //How many page elements visible in the pagination
+				var currentPage;
+
+				function showPage(whichPage) {
+					if (whichPage < 1 || whichPage > totalPages) return false;
+
+					currentPage = whichPage;
+
+					$(".card-content .card").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+
+					$(".pagination li").slice(1, -1).remove();
+
+					getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+						$("<li>").addClass("page-item").addClass(item ? "current-page" : "dots")
+							.toggleClass("active", item === currentPage).append($("<a>").addClass("page-link")
+								.attr({ href: "javascript:void(0)" }).text(item || "...")).insertBefore(".next-page");
+					});
+
+					$(".previous-page").toggleClass("disable", currentPage === 1);
+					$(".next-page").toggleClass("disable", currentPage === totalPages);
+					return true;
+				}
+
+				$(".pagination").append(
+					$("<li>").addClass("page-item").addClass("previous-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Prev")),
+					$("<li>").addClass("page-item").addClass("next-page").append($("<a>").addClass("page-link").attr({ href: "javascript:void(0)" }).text("Next"))
+				);
+
+				$(".card-content").show();
+				showPage(1);
+
+				$(document).on("click", ".pagination li.current-page:not(.active)", function () {
+					return showPage(+$(this).text());
+				});
+
+				$(".next-page").on("click", function () {
+					return showPage(currentPage + 1);
+				});
+
+				$(".previous-page").on("click", function () {
+					return showPage(currentPage - 1);
+				});
+			});
+		}
+
+		let cardContent = document.querySelector('.card-content')
+
+			function getHTML() {
+				fetch('http://localhost:3000/dataUser')
+					.then(function (response) {
+						return response.json();
+					})
+					.then(function (response) {
+						function renderHTML() {
+							let htmls = response.map((html) => {
+								return `
+						<div class="card">
+							<div>name: ${html.name}</div>
+							<div>age: ${html.age}</div>
+							<div>rank: ${html.rank}</div>
+						</div>
+					`
+							})
+							cardContent.innerHTML = htmls.join('')
+						}
+						renderHTML()
+						start()
+					})
+			}
+
+			(function start2() {
+				getHTML()
+			})()
+	</script>
+	
+	<script type="module" src="./main.js"></script>
+</body>
+</html>
+
+<!-- {
+	"dataUser": [
+	  {
+		"id": 1,
+		"name": "player 1",
+		"age": "1",
+		"rank": "1",
+    "userID": "13"
+	  },
+	  {
+		"id": 2,
+		"name": "player 2",
+		"age": "2",
+		"rank": "2",
+    "userID": "23"    
+	  },
+	  {
+		"id": 3,
+		"name": "player 3",
+		"age": "3",
+		"rank": "3",
+    "userID": "33"
+	  },
+	  {
+		"id": 4,
+		"name": "player 4",
+		"age": "4",
+		"rank": "4",
+    "userID": "43"
+	  },
+	  {
+		"id": 5,
+		"name": "player 5",
+		"age": "5",
+		"rank": "5",
+    "userID": "53"
+	  },
+	  {
+		"id": 6,
+		"name": "player 6",
+		"age": "6",
+		"rank": "6",
+    "userID": "63"
+	  },
+	  {
+		"id": 7,
+		"name": "player 7",
+		"age": "7",
+		"rank": "7",
+    "userID": "73"
+	  },
+	  {
+		"id": 8,
+		"name": "player 8",
+		"age": "8",
+		"rank": "8",
+    "userID": "83"
+	  },
+	  {
+		"id": 9,
+		"name": "player 9",
+		"age": "9",
+		"rank": "9",
+    "userID": "93"
+	  },
+	  {
+		"id": 10,
+		"name": "player 10",
+		"age": "10",
+		"rank": "10",
+    "userID": "103"
+	  },
+	  {
+		"id": 11,
+		"name": "player 11",
+		"age": "11",
+		"rank": "11",
+    "userID": "113"
+	  },
+	  {
+		"id": 12,
+		"name": "player 12",
+		"age": "12",
+		"rank": "12",
+    "userID": "123"
+	  },
+	  {
+		"id": 13,
+		"name": "player 13",
+		"age": "13",
+		"rank": "13",
+    "userID": "133"
+	  },
+	  {
+		"id": 14,
+		"name": "player 14",
+		"age": "14",
+		"rank": "14",
+    "userID": "143"
+	  },
+	  {
+		"id": 15,
+		"name": "player 15",
+		"age": "15",
+		"rank": "15",
+    "userID": "153"
+	  },
+	  {
+		"id": 16,
+		"name": "player 16",
+		"age": "16",
+		"rank": "16",
+    "userID": "163"
+	  },
+	  {
+		"id": 17,
+		"name": "player 17",
+		"age": "17",
+		"rank": "17",
+    "userID": "173"
+	  }
+	]
+} --
