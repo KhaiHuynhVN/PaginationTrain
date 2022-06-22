@@ -28,7 +28,6 @@
 			</ul>
 		</div>
 	</main>
-
 	<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 	<div class="container">
 		<div class="box-main">
@@ -40,8 +39,6 @@
 			</div>
 		</div>
 	</div>
-	  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-	  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 	  <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 	<script type="text/javascript">
 		function start() {
@@ -126,22 +123,23 @@
 						return response.json();
 					})
 					.then(function (response) {
-						function renderHTML() {
-							let htmls = response.map((html) => {
-								return `
-						<div class="card">
-							<div>name: ${html.name}</div>
-							<div>age: ${html.age}</div>
-							<div>rank: ${html.rank}</div>
-						</div>
-					`
-							})
-							cardContent.innerHTML = htmls.join('')
-						}
-						renderHTML()
+						renderHTML(response)
 						start()
 					})
 			}
+
+			function renderHTML(response) {
+					let htmls = response.map((html) => {
+						return `
+									<div class="card">
+										<div>name: ${html.name}</div>
+										<div>age: ${html.age}</div>
+										<div>rank: ${html.rank}</div>
+									</div>
+								`
+					})
+					cardContent.innerHTML = htmls.join('')
+				}
 
 			(function start2() {
 				getHTML()
